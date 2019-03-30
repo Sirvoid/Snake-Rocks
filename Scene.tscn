@@ -1,0 +1,78 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/Game.gd" type="Script" id=1]
+[ext_resource path="res://Images/tile-1.png" type="Texture" id=2]
+[ext_resource path="res://src/Player.gd" type="Script" id=3]
+[ext_resource path="res://Images/worm-2.png" type="Texture" id=4]
+[ext_resource path="res://Pixeled.tres" type="DynamicFont" id=5]
+
+[node name="Scene" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Background" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 364, 364 )
+
+[node name="Player" type="Sprite" parent="."]
+script = ExtResource( 3 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Player"]
+z_index = 1
+amount = 5
+lifetime = 0.25
+speed_scale = 0.5
+randomness = 0.7
+emission_shape = 1
+emission_sphere_radius = 2.0
+spread = 108.87
+gravity = Vector2( 0, 0 )
+initial_velocity = 30.0
+color = Color( 0.4, 0.831373, 0.823529, 1 )
+hue_variation = -0.1
+hue_variation_random = 0.23
+
+[node name="Sprite" type="Sprite" parent="Player"]
+rotation = 1.5708
+texture = ExtResource( 4 )
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+rotation = 1.5708
+rotating = true
+current = true
+zoom = Vector2( 0.25, 0.25 )
+drag_margin_left = 0.0
+drag_margin_top = 0.0
+drag_margin_right = 0.0
+drag_margin_bottom = 0.0
+
+[node name="UI" type="CanvasLayer" parent="."]
+offset = Vector2( 182, 182 )
+scale = Vector2( 2, 2 )
+transform = Transform2D( 2, 0, 0, 2, 182, 182 )
+
+[node name="ScoreTxt" type="RichTextLabel" parent="UI"]
+anchor_right = 0.04
+anchor_bottom = 0.03
+margin_left = -84.0
+margin_top = -97.0
+margin_right = 136.2
+margin_bottom = -73.6
+custom_fonts/normal_font = ExtResource( 5 )
+custom_colors/default_color = Color( 1, 0.878431, 0.211765, 1 )
+meta_underlined = false
+text = "Score: 0"
+scroll_active = false
+
+[node name="DeadScreen" type="RichTextLabel" parent="UI"]
+visible = false
+margin_left = -10.2777
+margin_top = 16.0891
+margin_right = 141.722
+margin_bottom = 61.0891
+custom_fonts/normal_font = ExtResource( 5 )
+custom_colors/default_color = Color( 1, 0, 0, 1 )
+custom_colors/selection_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "You died."
+
